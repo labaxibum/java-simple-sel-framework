@@ -565,6 +565,7 @@ public class ElementUtils {
     }
     //endregion
 
+    //Function for Appium driver
     public void rotateDevice(String screenOrientation){
         AndroidDriver androidDriver = (AndroidDriver) driver;
         if(screenOrientation.equalsIgnoreCase("landscape")){
