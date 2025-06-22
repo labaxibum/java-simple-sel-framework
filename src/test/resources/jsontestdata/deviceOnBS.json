@@ -1,0 +1,26 @@
+[
+  {
+    "deviceTest": "Samsung Galaxy S24 Ultra OS14",
+    "osVersion": "14.0",
+    "deviceName": "Samsung Galaxy S24 Ultra",
+    "deviceOrientation" : "landscape"
+  },
+  {
+    "deviceTest": "Samsung Galaxy S23 OS13",
+    "osVersion": "13.0",
+    "deviceName": "Samsung Galaxy S23",
+    "deviceOrientation" : "portrait"
+  },
+  {
+    "deviceTest": "iPhone 15 Plus iOS17",
+    "osVersion": "17.0",
+    "deviceName": "iPhone 15 Plus",
+    "deviceOrientation" : "landscape"
+  },
+  {
+    "deviceTest": "iPad Pro 11 2022 iOS16",
+    "osVersion": "16.0",
+    "deviceName": "iPad Pro 11 2022",
+    "deviceOrientation" : "portrait"
+  }
+]

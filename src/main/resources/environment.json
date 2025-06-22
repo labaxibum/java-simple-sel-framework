@@ -1,0 +1,13 @@
+{
+  "environment": "dev",
+  "dev": {
+    "url": "https://unsplash.com",
+    "backend-host": "https://api.unsplash.com"
+  },
+  "test": {
+    "url": "https://demo.guru99.com/v5"
+  },
+  "staging": {
+    "url": "https://staging-demoqa.com"
+  }
+}
