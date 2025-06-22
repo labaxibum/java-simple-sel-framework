@@ -2,6 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+!**/src/main/resources/config.json
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -13,5 +14,5 @@ target/
 *.ipr
 Reports
 logs
-config.json
+
 
