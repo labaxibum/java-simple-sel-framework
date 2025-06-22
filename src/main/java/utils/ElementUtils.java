@@ -2,6 +2,8 @@ package utils;
 
 import extensions.FileExtensions;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import log.LogHelper;
 import constants.HTMLConstants;
 import org.openqa.selenium.*;
@@ -563,4 +565,13 @@ public class ElementUtils {
     }
     //endregion
 
+    public void rotateDevice(String screenOrientation){
+        AndroidDriver androidDriver = (AndroidDriver) driver;
+        if(screenOrientation.equalsIgnoreCase("landscape")){
+            androidDriver.rotate(ScreenOrientation.LANDSCAPE);
+        }
+        else {
+            androidDriver.rotate(ScreenOrientation.PORTRAIT);
+        }
+    }
 }

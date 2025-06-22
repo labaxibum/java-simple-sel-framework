@@ -1,6 +1,7 @@
 package driverManager;
 
 import config.ConfigLoader;
+import io.appium.java_client.android.AndroidDriver;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -66,7 +67,7 @@ public class DriverCreator {
         capabilities.setCapability("bstack:options", browserstackOptions);
         capabilities.setCapability(PLATFORM_NAME_BS, "android");
 
-        browserStackDriver = new RemoteWebDriver(new URL(URL_BS), capabilities);
+        browserStackDriver = new AndroidDriver(new URL(URL_BS), capabilities);
         return browserStackDriver;
     }
 }
