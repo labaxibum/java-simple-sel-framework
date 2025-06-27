@@ -14,14 +14,11 @@
                 <SizeBasedTriggeringPolicy size="250 MB"/>
             </Policies>
         </RollingFile>
-        <root>
-
-        </root>
     </Appenders>
     <Loggers>
         <Logger name="appiumFramework.com" level="debug" additivity="false">
             <AppenderRef ref="LogToConsole" />
-        </Logger>
+         </Logger>
         <Root level="info">
             <AppenderRef ref="LogToConsole"/>
             <AppenderRef ref="RollingFile"/>

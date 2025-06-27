@@ -23,7 +23,7 @@ public class WebTestNGSetupBase {
     private final String testBrowser = ConfigLoader.getConfig("browser");
     public ElementUtils currentBrowser;
 
-    @BeforeTest
+    @BeforeTest(alwaysRun = true)
     public void beforeTest(ITestContext ctx) {
         HtmlReporter.currentTest = ctx.getName();
         HtmlReporter.createTest(ctx.getName(), "");

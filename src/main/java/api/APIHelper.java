@@ -2,7 +2,7 @@ package api;
 
 import org.json.JSONObject;
 
-public class apiHelper {
+public class APIHelper {
     public static String parseCookieToJson(String cookieString, String objectKey , String key) {
         JSONObject jsonObject = new JSONObject(cookieString);
         // Get the first object from the array

@@ -21,12 +21,10 @@ public class HtmlReporter {
     private static final Boolean IS_RELATIVE_SCREENSHOT = true;
     public static String currentTest;
     private static ExtentReports extentReport;
-    private static HashMap<String, ExtentTest> extentTestMap = new HashMap<>();
-    private static ExtentTest testClass;
-    private static ExtentTest testCase;
+    private static ThreadLocal<ExtentTest> testClassThreadLocal = new ThreadLocal<>();
+    private static ThreadLocal<ExtentTest> testCaseThreadLocal = new ThreadLocal<>();
 
     public static ExtentReports createReport() throws IOException {
-
         if (extentReport == null) {
             extentReport = createInstance();
         }
@@ -57,6 +55,9 @@ public class HtmlReporter {
         if (extentReport != null) {
             extentReport.flush();
             extentReport = null;
+            // Clean up ThreadLocal to avoid memory leaks
+            testClassThreadLocal.remove();
+            testCaseThreadLocal.remove();
         }
     }
 
@@ -65,25 +66,25 @@ public class HtmlReporter {
     }
 
     public static ExtentTest createTest(String strTestMethodName, String strTestMethodDesc) {
-
-        testClass = extentReport.createTest(strTestMethodName, strTestMethodDesc);
+        ExtentTest testClass = extentReport.createTest(strTestMethodName, strTestMethodDesc);
+        testClassThreadLocal.set(testClass);
         return testClass;
     }
 
     public static ExtentTest createTest(String strTestClassName) {
-
-        testClass = extentReport.createTest(strTestClassName);
+        ExtentTest testClass = extentReport.createTest(strTestClassName);
+        testClassThreadLocal.set(testClass);
         return testClass;
     }
 
-    public static ExtentTest createNode(String strClassName, String strTestMethodName,
-                                        String strTestMethodDesc) {
-        testCase = testClass.createNode(strTestMethodName);
+    public static ExtentTest createNode(String strClassName, String strTestMethodName, String strTestMethodDesc) {
+        ExtentTest testCase = testClassThreadLocal.get().createNode(strTestMethodName);
+        testCaseThreadLocal.set(testCase);
         return testCase;
     }
 
     public static ExtentTest getTest() {
-        return testCase;
+        return testCaseThreadLocal.get();
     }
 
     private static String getScreenshotPath(String strAbsolutePath) {
@@ -110,12 +111,6 @@ public class HtmlReporter {
         getTest().info(strDescription);
     }
 
-    /**
-     * Takes a screenshot and embeds it into the test report.
-     *
-     * @param strScreenshotPath Path to save the screenshot to
-     * @throws IOException If screenshot capture fails
-     */
     public static void screenShot(String strScreenshotPath) throws IOException {
         strScreenshotPath = getScreenshotPath(strScreenshotPath);
         getTest().addScreenCaptureFromPath(strScreenshotPath);
@@ -129,14 +124,6 @@ public class HtmlReporter {
             getTest().pass(strDescription).addScreenCaptureFromPath(strScreenshotPath);
         }
     }
-
-//    public static void fail(String strDescription, Throwable throwable, MediaEntityModelProvider build) {
-//        getTest().fail(strDescription);
-//    }
-//
-//    public static void fail(Markup m, MediaEntityModelProvider build) {
-//        getTest().fail(m);
-//    }
 
     public static void fail(String strDescription, Throwable e) {
         getTest().fail(strDescription).fail(e);
@@ -206,7 +193,7 @@ public class HtmlReporter {
         getTest().info(MarkupHelper.createCodeBlock(data));
     }
 
-    public static void testMarkup(List<String> expectedList, List<String> actualList){
-        getTest().info(MarkupHelperPlus.test(expectedList,actualList));
+    public static void testMarkup(List<String> expectedList, List<String> actualList) {
+        getTest().info(MarkupHelperPlus.test(expectedList, actualList));
     }
 }

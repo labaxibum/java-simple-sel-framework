@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Practice Suite"  thread-count="2" parallel="tests">
+    <test name="Test Basics 1"  >
+        <groups>
+            <run>
+                <include name="1"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="webClientTest.demo_parallel_test"/>
+        </classes>
+    </test>
+    <test name="Test Basics 2"  >
+        <groups>
+            <run>
+                <include name="2"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="webClientTest.demo_parallel_test"/>
+        </classes>
+    </test>
+</suite>
