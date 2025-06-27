@@ -4,14 +4,14 @@
   + Local
   + Thread
   + Logs (Log4j)
-  + TestNG
+  + TestNG 
   + MarkupHelper
-  + ExtentReport
+  + ExtentReport 
 
 - Change the config setting in config.json
 - Change the environment setting in environment.json
 - Adding more devices in deviceOnBS.json
-- Adding deviceOrientation to JSON file due to not using rotate
+- Adding deviceOrientation to JSON file due to not using rotate (Optional due to there is Rotate function)
   
 ![image](https://github.com/user-attachments/assets/7c0f1026-45a5-4154-8f32-6a9e8e38aa87)
 
@@ -19,6 +19,7 @@
 - Report will be exported to a Reports folder after each tests
   + Capture screenshot when having a failed cases
   + Markup helper within custom markup
+  + With ThreadLocal does support for parallel tests
 ![msedge_ElSEB72DsE](https://github.com/labaxibum/Java-selenium-fw/assets/47781346/3eb94ee8-bb8c-42c4-8777-c9aa0803ef62)
 
 - Logs wild be exported to logs folder
