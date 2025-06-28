@@ -11,7 +11,7 @@
 - Change the config setting in config.json
 - Change the environment setting in environment.json
 - Adding more devices in deviceOnBS.json
-- Adding deviceOrientation to JSON file due to not using rotate (Optional due to there is Rotate function)
+- Adding deviceOrientation to JSON file instead of hard-coded Portrait
   
 ![image](https://github.com/user-attachments/assets/7c0f1026-45a5-4154-8f32-6a9e8e38aa87)
 
