@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
+import static driverManager.DriverCreator.IS_DEBUG;
+
 public class WebTestNGSetupBase {
     private final String testBrowser = ConfigLoader.getConfig("browser");
     public ElementUtils currentBrowser;
@@ -29,7 +31,7 @@ public class WebTestNGSetupBase {
         HtmlReporter.createTest(ctx.getName(), "");
         LogHelper.info("============================== Running on test [ " + ctx.getName() + " ] ==============================");
         DriverManager.initWebDriver(testBrowser);
-        currentBrowser = new ElementUtils(DriverManager.getWebDriver());
+        currentBrowser = new ElementUtils(DriverManager.getWebDriver(), IS_DEBUG);
         DriverManager.getWebDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
     }
 

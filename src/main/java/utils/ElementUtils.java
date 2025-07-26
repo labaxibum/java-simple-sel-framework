@@ -19,27 +19,33 @@ import java.util.Date;
 import java.util.List;
 
 public class ElementUtils {
+    private boolean isDebug;
     private static final String CANNOT_TAKE_SCREENSHOT = "Cannot take screenshot";
     private static final String DOUBLE_SLASH = "//";
     public WebDriverWait wait;
 
     private WebDriver driver;
 
-    public ElementUtils(WebDriver driver) {
+    public ElementUtils(WebDriver driver,  boolean isDebug) {
         this.driver = driver;
+        this.isDebug = isDebug;
         wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     //region Highlight Element section
-    public void highlightElement(WebElement element) {
-        JavascriptExecutor jexecu = (JavascriptExecutor) driver;
-        jexecu.executeScript("arguments[0].style.border='3px groove red'", element);
+    public void highlightElement(WebElement element, boolean isDebug) {
+        if(isDebug){
+            JavascriptExecutor jexecu = (JavascriptExecutor) driver;
+            jexecu.executeScript("arguments[0].style.backgroundColor='red'", element);
+        }
     }
 
-    public void highlightElements(List<WebElement> elements) {
-        for (WebElement e : elements) {
-            JavascriptExecutor jse = (JavascriptExecutor) driver;
-            jse.executeScript("arguments[0].style.border='3px groove red'", e);
+    public void highlightElements(List<WebElement> elements, boolean isDebug) {
+        if(isDebug){
+            for (WebElement e : elements) {
+                JavascriptExecutor jse = (JavascriptExecutor) driver;
+                jse.executeScript("arguments[0].style.border='3px groove red'", e);
+            }
         }
     }
     //endregion
@@ -251,7 +257,7 @@ public class ElementUtils {
         try {
             WebElement e = findElement(elementStr);
             waitUntilElementToBeClickable(elementStr);
-            highlightElement(e);
+            highlightElement(e, isDebug);
             e.click();
             LogHelper.info("Can click on element [" + elementStr + "]");
         } catch (StaleElementReferenceException e) {
@@ -296,7 +302,7 @@ public class ElementUtils {
         try {
             JavascriptExecutor js = (JavascriptExecutor) driver;
             WebElement e = findElement(elementStr);
-            highlightElement(e);
+            highlightElement(e, isDebug);
             js.executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", e);
             LogHelper.info("Can scroll to element [" + elementStr + "]");
         } catch (StaleElementReferenceException e) {
@@ -311,7 +317,7 @@ public class ElementUtils {
         try {
             WebElement e = findElement(elementStr);
             waitUntilElementToBeClickable(elementStr);
-            highlightElement(e);
+            highlightElement(e, isDebug);
             e.sendKeys(keysToSend);
             LogHelper.info("User has just entered [" + keysToSend + "] into element [" + elementStr + "]");
         } catch (StaleElementReferenceException e) {
@@ -326,7 +332,7 @@ public class ElementUtils {
         try {
             WebElement e = findElement(elementStr);
             waitUntilElementToBeClickable(elementStr);
-            highlightElement(e);
+//            highlightElement(e, isDebug);
             e.clear();
             LogHelper.info("User has just clear element [" + elementStr + "]");
         } catch (StaleElementReferenceException e) {
@@ -414,7 +420,7 @@ public class ElementUtils {
         try {
             WebElement e = findElement(elementStr);
             waitUntilElementVisibility(elementStr);
-            highlightElement(e);
+            highlightElement(e, isDebug);
             elementText = e.getText();
             LogHelper.info("Get text [" + elementText + "] from element [" + elementStr + "]");
         } catch (StaleElementReferenceException e) {

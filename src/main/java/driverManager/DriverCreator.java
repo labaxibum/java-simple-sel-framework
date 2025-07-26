@@ -27,6 +27,7 @@ public class DriverCreator {
     private static final String PROJECT_NAME_BS = "projectName";
     private static final String DEVICE_ORIENTATION = "deviceOrientation";
     public static final String URL_BS = "https://" + ConfigLoader.getConfig("username_bs") + ":" + ConfigLoader.getConfig("password_bs") + "@hub-apse.browserstack.com/wd/hub";
+    public static final boolean IS_DEBUG = Boolean.parseBoolean(ConfigLoader.getConfig("isDebug"));
 
     public static WebDriver getWebDriver(String browser) {
         WebDriver webDriver = null;

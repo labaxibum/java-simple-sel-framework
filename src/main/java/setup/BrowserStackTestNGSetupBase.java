@@ -23,6 +23,8 @@ import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import static driverManager.DriverCreator.IS_DEBUG;
+
 public class BrowserStackTestNGSetupBase {
 
     private String device;
@@ -91,7 +93,7 @@ public class BrowserStackTestNGSetupBase {
         device = deviceXML;
         jSonData = FileReaderManager.getJsonReader("DeviceOnBS").getDeviceByDeviceTest(device);
         DriverManager.initBrowserStackDriver(jSonData.deviceName, jSonData.osVersion, jSonData.deviceOrientation);
-        currentBrowser = new ElementUtils(DriverManager.getBrowserStackDriver());
+        currentBrowser = new ElementUtils(DriverManager.getBrowserStackDriver(), IS_DEBUG);
         DriverManager.getBrowserStackDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
 

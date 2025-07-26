@@ -3,5 +3,6 @@
   "password_bs": "",
   "browser": "chrome",
   "buildName_bs": "Build v1.1.1",
-  "projectName_bs": "Project V1.1"
+  "projectName_bs": "Project V1.1",
+  "isDebug": "true"
 }
